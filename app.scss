@@ -1,0 +1,16 @@
+.required-marker {
+    display: none;
+    color: red;
+    .form-group.required & {
+        display: inline;
+    }
+    &:after {
+        content: '*';
+    }
+}
+
+.btn,
+.form-control,
+.alert {
+    border-radius: 0 !important;
+}

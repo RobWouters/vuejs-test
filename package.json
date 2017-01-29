@@ -1,0 +1,25 @@
+{
+  "name": "vuejs-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "webpack": "webpack --config webpack.config.js --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "bootstrap": "^3.3.7",
+    "css-loader": "^0.26.1",
+    "file-loader": "^0.10.0",
+    "node-sass": "^4.4.0",
+    "sass-loader": "^4.1.1",
+    "scss-loader": "0.0.1",
+    "style-loader": "^0.13.1",
+    "ts-loader": "^2.0.0",
+    "typescript": "^2.1.5",
+    "vue": "~2",
+    "vue-class-component": "^4.4.0",
+    "webpack": "~2"
+  }
+}

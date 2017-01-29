@@ -1,0 +1,7 @@
+{
+    "compilerOptions": {
+        "lib": ["ES5", "DOM", "ES2015.Promise"],
+        "target": "ES5",
+        "experimentalDecorators": true
+    }
+}
