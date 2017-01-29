@@ -12,6 +12,12 @@ import SubmitButton from './submit-button.component'
     <form-group label="Lastname">
         <input v-model="form.lastName" class="form-control">
     </form-group>
+    <form-group label="Gender">
+        <select v-model="form.gender" class="form-control">
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+    </form-group>
     <submit-button/>
 
     <div v-if="submitted">
@@ -28,6 +34,7 @@ export default class UserForm extends Vue {
     form = {
         firstName: 'Rob',
         lastName: 'Wouters',
+        gender: 'M',
     }
     submitted = false
 
