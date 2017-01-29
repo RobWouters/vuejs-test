@@ -2,6 +2,7 @@ import Vue = require('vue')
 import Component from 'vue-class-component'
 import FormGroup from './form-group.component'
 import SubmitButton from './submit-button.component'
+import {Watch} from 'vue-property-decorator'
 
 @Component({
     template: `
@@ -20,12 +21,20 @@ import SubmitButton from './submit-button.component'
     </form-group>
     <submit-button/>
 
-    <div v-if="submitted">
+    <div v-if="showResult">
         <hr>
 
         <div class="alert alert-success">
             Your name is <strong>{{ name }}</strong>.
         </div>
+
+        <h4>Model:</h4>
+
+        <pre>{{ json }}</pre>
+
+        <button type="button" class="btn btn-danger" @click="close">
+            Close
+        </button>
     </div>
 </form>`,
     components: {SubmitButton, FormGroup},
@@ -36,16 +45,26 @@ export default class UserForm extends Vue {
         lastName: 'Wouters',
         gender: 'M',
     }
-    submitted = false
+    showResult = false
 
     get name() {
         return `${this.form.firstName} ${this.form.lastName}`.trim()
     }
 
+    get json() {
+        return JSON.stringify(this.form, null, 4)
+    }
+
     submit() {
-        this.submitted = true
-        setTimeout(() => {
-            this.submitted = false
-        }, 3000)
+        this.showResult = true
+    }
+
+    close() {
+        this.showResult = false
+    }
+
+    @Watch('form', {deep: true})
+    onFormChanged() {
+        this.showResult = false
     }
 }

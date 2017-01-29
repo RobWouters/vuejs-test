@@ -20,6 +20,7 @@
     "typescript": "^2.1.5",
     "vue": "~2",
     "vue-class-component": "^4.4.0",
+    "vue-property-decorator": "^3.4.0",
     "webpack": "~2"
   }
 }
