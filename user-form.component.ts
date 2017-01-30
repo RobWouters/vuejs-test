@@ -7,14 +7,22 @@ import {Watch} from 'vue-property-decorator'
 @Component({
     template: `
 <form v-on:submit.prevent="submit">
-    <form-group label="Firstname">
-        <input v-model="form.firstName" class="form-control" required>
-    </form-group>
     <form-group label="Lastname">
-        <input v-model="form.lastName" class="form-control">
+        <input v-model="form.firstName" class="form-control"
+            v-validate="'required'" name="firstName">
+    </form-group>
+    <form-group label="Firstname">
+        <input v-model="form.lastName" class="form-control"
+            v-validate="'required'" name="lastName">
+    </form-group>
+    <form-group label="Email">
+        <input v-model="form.email" class="form-control"
+            v-validate="'required|email'" name="email">
     </form-group>
     <form-group label="Gender">
-        <select v-model="form.gender" class="form-control">
+        <select v-model="form.gender" class="form-control"
+            name="gender" v-validate="'required'">
+            <option value="">-- Choose gender --</option>
             <option value="M">Male</option>
             <option value="F">Female</option>
         </select>
@@ -41,9 +49,10 @@ import {Watch} from 'vue-property-decorator'
 })
 export default class UserForm extends Vue {
     form = {
-        firstName: 'Rob',
-        lastName: 'Wouters',
-        gender: 'M',
+        firstName: '',
+        lastName: '',
+        email: '',
+        gender: '',
     }
     showResult = false
 
@@ -56,7 +65,13 @@ export default class UserForm extends Vue {
     }
 
     submit() {
-        this.showResult = true
+        const $this: any = this
+        $this.$validator.validateAll().then(success => {
+            if (! success) {
+                alert('Bevat fouten!')
+            }
+            this.showResult = true
+        })
     }
 
     close() {
