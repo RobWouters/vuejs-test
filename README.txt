@@ -2,5 +2,5 @@ Try out:
 
     git clone ...
     npm install
-    npm webpack
+    npm start
     <Open src/index.html>
